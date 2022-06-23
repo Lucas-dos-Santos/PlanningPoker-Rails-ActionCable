@@ -9,9 +9,8 @@ class RoomsController < ApplicationController
 		session_id = session[:session_id]
 		room = Room.where(unique_identifier: unique_identifier).first
 		room.participants.new(user_session_id: session_id, name: participant_name)
-		if room.save
-			ActionCable.server.broadcast('room_channel', { mod_message: card_render(room.participants.last) })
-		end
+		room.save
+
 		redirect_to room_show_path(room_identifier: unique_identifier) 
 	end
 
@@ -45,6 +44,6 @@ class RoomsController < ApplicationController
     participant = room.participants.where(user_session_id: session_id).first
 		participant.update(estimate: params[:value])
 
-    redirect_to room_show_path(room_identifier: room.unique_identifier)
+		ActionCable.server.broadcast('room_channel', { estimate: participant.estimate })
   end
 end

@@ -1,4 +1,4 @@
 .div.me-5
 	= participant.name
-	.estimate-card
+	.estimate-card{ id: participant.id }
 		= "#{participant.estimate ? participant.estimate : '?'}"

@@ -3,13 +3,12 @@
   %h1 My Estimate
   .d-flex
     - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |v|
-      = form_with url: estimate_path(@room.unique_identifier, v) do |f|
-        = f.submit "#{v}", class: 'btn btn-info text-white fw-bold me-2'
+      = form_tag estimate_path(@room.unique_identifier, v), remote: true do
+        = submit_tag "#{v}", class: 'btn btn-info text-white fw-bold me-2'
 
   %h1 Estimates
 
-  #participants.d-flex.flex-row 
-
+  #cards-container.d-flex.flex-row 
     = render @room.participants
 
   = link_to 'Back', root_path
@@ -20,3 +19,6 @@
     = f.submit 'Hide'
   = form_with url: 'reveal_room_path(@room.identifier)' do |f|
     = f.submit 'Reveal'
+:javascript
+  console.log('oii')
+  console.log($('#cards-container').length)
