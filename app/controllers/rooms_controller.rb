@@ -1,10 +1,50 @@
 class RoomsController < ApplicationController
 	def new
-		byebug
-		user_session_id = session[:session_id]
 		room = Room.new
 		room.save
-
-
+		join_room(room.unique_identifier, params[:name])
 	end
+
+	def join_room(unique_identifier, participant_name)
+		session_id = session[:session_id]
+		room = Room.where(unique_identifier: unique_identifier).first
+		room.participants.new(user_session_id: session_id, name: participant_name)
+		if room.save
+			ActionCable.server.broadcast('room_channel', { mod_message: card_render(room.participants.last) })
+		end
+		redirect_to room_show_path(room_identifier: unique_identifier) 
+	end
+
+	def card_render(participant)
+		render(partial: 'participants/participant', locals: { participant: participant })
+	end
+
+	def show
+		if params[:name]
+			join_room(params[:room_identifier], params[:name])
+		end
+		user_session_id = session[:session_id]
+		@room = Room.where(unique_identifier: params[:room_identifier]).first
+		participant = @room.participants.where(user_session_id: user_session_id).first
+
+		return redirect_to create_participant_path(room_identifier: @room.unique_identifier) if participant.nil?
+	end
+
+	def create_participant
+		user_session_id = session[:session_id]
+		@room_identifier = params[:room_identifier]
+	end
+
+
+
+	def estimate
+    session_id = session[:session_id]
+
+    room = Room.where(unique_identifier: params[:room_identifier]).first
+
+    participant = room.participants.where(user_session_id: session_id).first
+		participant.update(estimate: params[:value])
+
+    redirect_to room_show_path(room_identifier: room.unique_identifier)
+  end
 end

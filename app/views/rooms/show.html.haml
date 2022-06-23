@@ -1,0 +1,22 @@
+.container
+  %p#notice= notice
+  %h1 My Estimate
+  .d-flex
+    - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |v|
+      = form_with url: estimate_path(@room.unique_identifier, v) do |f|
+        = f.submit "#{v}", class: 'btn btn-info text-white fw-bold me-2'
+
+  %h1 Estimates
+
+  #participants.d-flex.flex-row 
+
+    = render @room.participants
+
+  = link_to 'Back', root_path
+
+  = form_with url: 'reset_room_path(@room.identifier)' do |f|
+    = f.submit 'Reset'
+  = form_with url: 'hide_room_path(@room.identifier)' do |f|
+    = f.submit 'Hide'
+  = form_with url: 'reveal_room_path(@room.identifier)' do |f|
+    = f.submit 'Reveal'

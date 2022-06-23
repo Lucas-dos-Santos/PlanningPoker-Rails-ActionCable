@@ -1,0 +1,4 @@
+.container  
+  = form_with url: room_show_path(@room_identifier), method: :get do |f|
+    = f.text_field :name, placeholder: 'Your Name', required: true
+    = f.submit "Enter Room"
