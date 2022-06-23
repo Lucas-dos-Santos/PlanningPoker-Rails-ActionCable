@@ -8,5 +8,5 @@
 					= form_with url: new_room_path, method: :get do |f|
 						= f.label :name
 						%br
-						= f.text_field :name, placeholder: 'Write your name here', required: true
+						= f.text_field :name, placeholder: 'Write your name here', required: true, maxlength: 12
 						= f.submit 'Create new Room', class: 'btn btn-sm btn-secondary'

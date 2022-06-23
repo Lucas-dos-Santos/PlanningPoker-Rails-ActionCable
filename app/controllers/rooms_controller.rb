@@ -24,17 +24,15 @@ class RoomsController < ApplicationController
 		end
 		user_session_id = session[:session_id]
 		@room = Room.where(unique_identifier: params[:room_identifier]).first
-		participant = @room.participants.where(user_session_id: user_session_id).first
-
-		return redirect_to create_participant_path(room_identifier: @room.unique_identifier) if participant.nil?
+		@participant = @room.participants.where(user_session_id: user_session_id).first
+		add_participant_card(@participant) if params[:commit] == "Enter Room"
+		return redirect_to create_participant_path(room_identifier: @room.unique_identifier) if @participant.nil?
 	end
 
 	def create_participant
 		user_session_id = session[:session_id]
 		@room_identifier = params[:room_identifier]
 	end
-
-
 
 	def estimate
     session_id = session[:session_id]
@@ -44,6 +42,12 @@ class RoomsController < ApplicationController
     participant = room.participants.where(user_session_id: session_id).first
 		participant.update(estimate: params[:value])
 
-		ActionCable.server.broadcast('room_channel', { estimate: participant.estimate })
+		ActionCable.server.broadcast('room_channel', { participant: participant, origin: 'update_estimate' })
   end
+
+	private
+
+	def add_participant_card(participant)
+		ActionCable.server.broadcast('room_channel', { participant: participant, origin: 'add_participant_card' })
+	end
 end
