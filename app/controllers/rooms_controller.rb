@@ -40,10 +40,17 @@ class RoomsController < ApplicationController
     room = Room.where(unique_identifier: params[:room_identifier]).first
 
     participant = room.participants.where(user_session_id: session_id).first
-		participant.update(estimate: params[:value])
+		participant.update(estimate: params[:value], can_estimate: false)
 
 		ActionCable.server.broadcast('room_channel', { participant: participant, origin: 'update_estimate' })
   end
+
+	def reset_room
+		room = Room.where(unique_identifier: params[:room_identifier]).first
+		room.participants.update_all(estimate: nil, can_estimate: true)
+
+		ActionCable.server.broadcast('room_channel', { origin: 'reset_room' })
+	end
 
 	private
 

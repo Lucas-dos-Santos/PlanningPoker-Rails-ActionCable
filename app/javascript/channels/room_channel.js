@@ -17,8 +17,14 @@ consumer.subscriptions.create("RoomChannel", {
     } 
     if (data.origin == 'update_estimate') {
       let participant = data.participant
-      $('#estimate-buttons-' + participant.id + ' form input').prop('disabled', true)
       $('#participant_' + participant.id).text(participant.estimate)
+      $('#estimate-buttons-' + participant.id + ' form button').prop('disabled', true)
+    }
+
+    if (data.origin == 'reset_room') {
+      $('#forms-container div form button').removeAttr('disabled')      
+      $('#cards-container div div').text('?')
+
     }
   }
 });

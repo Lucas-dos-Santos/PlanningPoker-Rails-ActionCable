@@ -1,10 +1,11 @@
 .container
   %p#notice= notice
   %h1 My Estimate
-  .d-flex{ id: "estimate-buttons-#{@participant.id}" }
-    - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |value|
-      = form_tag estimate_path(@room.unique_identifier, value), remote: true do
-        = submit_tag value, class: 'btn btn-info text-white fw-bold me-2'
+  #forms-container
+    .d-flex{ id: "estimate-buttons-#{@participant.id}" }
+      - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |value|
+        = form_tag estimate_path(@room.unique_identifier, value), remote: true do
+          = button_tag value, type: 'submit', class: 'btn btn-info text-white fw-bold me-2', disabled: !@participant.can_estimate
   %h1 Estimates
 
   #cards-container.d-flex.flex-row 
@@ -12,12 +13,11 @@
 
   = link_to 'Back', root_path
 
-  = form_with url: 'reset_room_path(@room.identifier)' do |f|
-    = f.submit 'Reset'
+  = form_tag reset_room_path(@room.unique_identifier), remote: true do
+    = button_tag 'Reset', type: 'submit'
   = form_with url: 'hide_room_path(@room.identifier)' do |f|
     = f.submit 'Hide'
   = form_with url: 'reveal_room_path(@room.identifier)' do |f|
     = f.submit 'Reveal'
 :javascript
-  function disable_estimate() {
-  }
+  
