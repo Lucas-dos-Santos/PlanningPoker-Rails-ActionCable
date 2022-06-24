@@ -22,9 +22,9 @@ class RoomsController < ApplicationController
 		if params[:name]
 			join_room(params[:room_identifier], params[:name])
 		end
-		user_session_id = session[:session_id]
+		@user_session_id = session[:session_id]
 		@room = Room.where(unique_identifier: params[:room_identifier]).first
-		@participant = @room.participants.where(user_session_id: user_session_id).first
+		@participant = @room.participants.where(user_session_id: @user_session_id).first
 		add_participant_card(@participant) if params[:commit] == "Enter Room"
 		return redirect_to create_participant_path(room_identifier: @room.unique_identifier) if @participant.nil?
 	end
@@ -47,13 +47,17 @@ class RoomsController < ApplicationController
 
 	def reset_room
 		room = Room.where(unique_identifier: params[:room_identifier]).first
+		room.update(is_hidden: true)
 		room.participants.update_all(estimate: nil, can_estimate: true)
 
 		ActionCable.server.broadcast('room_channel', { origin: 'reset_room' })
 	end
 
 	def reveal
-		
+		room = Room.where(unique_identifier: params[:room_identifier]).first
+		room.update(is_hidden: false)
+
+		ActionCable.server.broadcast('room_channel', { participants: room.participants, origin: 'reveal' })
 	end
 
 	private

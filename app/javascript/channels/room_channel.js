@@ -20,11 +20,15 @@ consumer.subscriptions.create("RoomChannel", {
       $('#participant_' + participant.id).addClass('card-voted')
       $('#estimate-buttons-' + participant.id + ' form button').prop('disabled', true)
     }
-
     if (data.origin == 'reset_room') {
       $('#forms-container div form button').removeAttr('disabled')      
-      $('#cards-container div div').text('?')
-
+      $('#cards-container div div').text('?').removeClass('card-voted')
+    }
+    if (data.origin == 'reveal') {
+      data.participants.map(function(p) {
+        console.log(p)
+        $('#participant_' + p.id).addClass('card-voted').text(p.estimate)
+      })
     }
   }
 });

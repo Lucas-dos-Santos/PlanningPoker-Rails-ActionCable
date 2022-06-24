@@ -11,14 +11,14 @@
   #cards-container.d-flex.flex-row 
     = render @room.participants
 
-  = link_to 'Back', root_path
+  .d-flex.mt-3
+    = link_to 'Exit', root_path, class: 'btn btn-outline-danger me-2'
 
-  = form_tag reset_room_path(@room.unique_identifier), remote: true do
-    = button_tag 'Reset', type: 'submit'
-  = form_with url: 'hide_room_path(@room.identifier)' do |f|
-    = f.submit 'Hide'
-  = form_with url: 'reveal_room_path(@room.identifier)' do |f|
-    = f.submit 'Reveal'
+    = form_tag reset_room_path(@room.unique_identifier), remote: true do
+      = button_tag 'Reset', type: 'submit', class: 'btn btn-outline-info me-2'
+
+    = form_tag reveal_path(@room.unique_identifier), remote: true do
+      = button_tag 'Reveal', type: 'submit', class: 'btn btn-outline-success me-2'
 :javascript
   function changeValue(id, value) {
     $('#participant_' + id).text(value)
