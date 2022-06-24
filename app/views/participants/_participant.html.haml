@@ -1,4 +1,4 @@
 %div.me-5
 	= participant.name
-	.estimate-card{ id: "participant_#{participant.id}" }
+	%div{ id: "participant_#{participant.id}", class: "estimate-card set_card_voted(#{participant.estimate})" }
 		= "#{participant.estimate ? participant.estimate : '?'}"

@@ -52,6 +52,10 @@ class RoomsController < ApplicationController
 		ActionCable.server.broadcast('room_channel', { origin: 'reset_room' })
 	end
 
+	def reveal
+		
+	end
+
 	private
 
 	def add_participant_card(participant)

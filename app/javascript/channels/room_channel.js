@@ -17,7 +17,7 @@ consumer.subscriptions.create("RoomChannel", {
     } 
     if (data.origin == 'update_estimate') {
       let participant = data.participant
-      $('#participant_' + participant.id).text(participant.estimate)
+      $('#participant_' + participant.id).addClass('card-voted')
       $('#estimate-buttons-' + participant.id + ' form button').prop('disabled', true)
     }
 
