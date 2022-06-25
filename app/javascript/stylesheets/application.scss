@@ -4,6 +4,14 @@ body {
 	font-family: Helvetica, Sans-Serif;
 }
 
+.bg-custom-color {
+	background: #E9FFF9
+}
+
+.text-custom-color {
+	color: #467599;
+}
+
 .estimate-card {
 	padding: 0.5rem;
 	border: solid 1px #000;
@@ -38,15 +46,15 @@ body {
 	transition: transform .3s;
 }
 
-icons a {
+.icons a {
 	color: #121212;
 }
 
-icons:hover {
+.icons:hover {
 	transform: scale(1.4);
 }
 
-icons:before {
+.icons::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -75,4 +83,43 @@ icons:before {
 		width: 50%;
 		height: 50%;
 	}
+}
+
+.field-box {
+	position: relative;
+}
+
+.field-box input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #000;
+	color: #000;
+	outline: none;
+	background: transparent;
+}
+
+.field-box label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #000;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.field-box input:focus ~ label,
+.field-box input:valid ~ label {
+	top: -20px;
+	left: 0;
+	color: #ff0043;
+	font-size: 14px;
+}
+
+.teste {
+	swap
 }
