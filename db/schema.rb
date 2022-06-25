@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_24_012606) do
+ActiveRecord::Schema.define(version: 2022_06_25_182133) do
 
   create_table "participants", force: :cascade do |t|
     t.integer "room_id", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_012606) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "can_estimate", default: true
+    t.string "uuid"
     t.index ["room_id"], name: "index_participants_on_room_id"
   end
 

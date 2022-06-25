@@ -50,7 +50,7 @@ class RoomsController < ApplicationController
 		room.update(is_hidden: true)
 		room.participants.update_all(estimate: nil, can_estimate: true)
 
-		ActionCable.server.broadcast('room_channel', { origin: 'reset_room' })
+		ActionCable.server.broadcast('room_channel', { origin: 'reset_room', participants_uuids: room.participants.pluck(:uuid) })
 	end
 
 	def reveal

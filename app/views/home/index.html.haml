@@ -1,12 +1,19 @@
-.container.mt-5
+.container
 	.row 
-		.col-6
-			.card 
-				.card-header
-					Planning Poker
+		.col-6.display-center.flex-column
+			.card.w-75
 				.card-body
-					= form_with url: new_room_path, method: :get do |f|
-						= f.label :name
-						%br
-						= f.text_field :name, placeholder: 'Write your name here', required: true, maxlength: 12
-						= f.submit 'Create new Room', class: 'btn btn-sm btn-secondary'
+					.form-group
+						= form_with url: new_room_path, method: :get do |f|
+							= f.label :name, class: 'form-label'
+							= f.text_field :name, placeholder: 'Id Room', required: true, maxlength: 12, class: 'form-control'
+							= f.submit 'Enter Room', class: 'btn btn-sm btn-secondary'
+			.card.w-75.mt-3
+				.card-body
+					.form-group
+						= form_with url: new_room_path, method: :get do |f|
+							= f.label :name, class: 'form-label'
+							= f.text_field :name, placeholder: 'Your name here', required: true, maxlength: 12, class: 'form-control'
+							= f.submit 'Create new Room', class: 'btn btn-sm btn-secondary'
+		.col-6
+			= image_tag 'animation_500_l4u944sp'
