@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
 	def new
-		room = Room.new
+		room = Room.new(team_name: params[:team_name])
 		room.save
 		join_room(room.unique_identifier, params[:name])
 	end

@@ -1,5 +1,7 @@
 .container
-  %p#notice= notice
+  %h1
+    Team
+    = @room.team_name.capitalize
   %h1 My Estimate
   #forms-container
     .d-flex{ id: "estimate-buttons-#{@participant.uuid}" }
@@ -25,5 +27,6 @@
   }
 
   $(document).ready(function () {
-    $('.estimate-card').addClass('magictime vanishIn');
+    $('.estimate-card').addClass('magictime tinRightIn');
+    $('.estimate-card').removeClass('magictime tinRightIn');
   });

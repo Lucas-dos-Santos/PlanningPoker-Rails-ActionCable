@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_25_182133) do
+ActiveRecord::Schema.define(version: 2022_06_26_120014) do
 
   create_table "participants", force: :cascade do |t|
     t.integer "room_id", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_182133) do
     t.boolean "is_hidden", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "team_name"
   end
 
   add_foreign_key "participants", "rooms"
