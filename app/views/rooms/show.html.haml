@@ -5,7 +5,7 @@
     .d-flex{ id: "estimate-buttons-#{@participant.uuid}" }
       - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |value|
         = form_tag estimate_path(@room.unique_identifier, value), remote: true do
-          = button_tag value, type: 'submit', class: 'btn btn-info text-white fw-bold me-2', disabled: !@participant.can_estimate, onclick: "changeValue(#{@participant.uuid}, #{value});"
+          = button_tag value, type: 'submit', class: 'btn btn-info text-white fw-bold me-2', disabled: !@participant.can_estimate, onclick: "changeValue('#{@participant.uuid}', '#{value}');"
   %h1 Estimates
 
   #cards-container.d-flex.flex-row 
@@ -14,12 +14,16 @@
   .d-flex.mt-3
     = link_to 'Exit', root_path, class: 'btn btn-outline-danger me-2'
 
-    = form_tag reset_room_path(@room.unique_identifier), remote: true do
+    = form_tag reset_room_path(@room.unique_identifier), onsubmit: "$('.estimate-card').removeClass('magictime swashIn');", remote: true do
       = button_tag 'Reset', type: 'submit', class: 'btn btn-outline-info me-2'
 
-    = form_tag reveal_path(@room.unique_identifier), remote: true do
+    = form_tag reveal_path(@room.unique_identifier), onsubmit: "$('.estimate-card').addClass('magictime swashIn');", remote: true do
       = button_tag 'Reveal', type: 'submit', class: 'btn btn-outline-success me-2'
 :javascript
   function changeValue(uuid, value) {
     $('#' + uuid).text(value)
   }
+
+  $(document).ready(function () {
+    $('.estimate-card').addClass('magictime vanishIn');
+  });
