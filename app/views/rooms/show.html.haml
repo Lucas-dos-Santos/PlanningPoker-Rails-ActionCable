@@ -1,13 +1,12 @@
-.container
+.container.mt-4
   %h1
     Team
     = @room.team_name.capitalize
-  %h1 My Estimate
   #forms-container
     .d-flex{ id: "estimate-buttons-#{@participant.uuid}" }
       - [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89].each do |value|
         = form_tag estimate_path(@room.unique_identifier, value), remote: true do
-          = button_tag value, type: 'submit', class: 'btn btn-info text-white fw-bold me-2', disabled: !@participant.can_estimate, onclick: "changeValue('#{@participant.uuid}', '#{value}');"
+          = button_tag value, type: 'submit', class: 'fs-3 card-voted btn text-white fw-bold me-2', disabled: !@participant.can_estimate, onclick: "changeValue('#{@participant.uuid}', '#{value}');"
   %h1 Estimates
 
   #cards-container.d-flex.flex-row 

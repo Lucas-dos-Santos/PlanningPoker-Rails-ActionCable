@@ -6,19 +6,19 @@
 					.form-group
 						= form_with url: rooms_enter_path do |f|
 							.field-box
-								= f.text_field :room_identifier, required: true, maxlength: 12
+								= f.text_field :room_identifier, required: true, maxlength: 12, class: 'text-white'
 								= f.label :room_identifier
-							= f.submit 'Enter Room', class: 'btn btn-sm btn-secondary'
+							= f.submit 'Enter Room', class: 'btn-custom-home'
 			.card.w-75.mt-3
 				.card-body
 					.form-group
 						= form_with url: new_room_path, method: :get do |f|
 							.field-box
-								= f.text_field :team_name, required: true, maxlength: 12
+								= f.text_field :team_name, required: true, maxlength: 12, class: 'text-white'
 								= f.label :team_name
 							.field-box
-								= f.text_field :name, required: true, maxlength: 12
+								= f.text_field :name, required: true, maxlength: 12, class: 'text-white'
 								= f.label :name
-							= f.submit 'Create new Room', class: 'btn btn-sm btn-secondary'
+							= f.submit 'Create new Room', class: 'btn-custom-home'
 		.col-6
-			= image_tag ('https://i.ibb.co/3CzVBYX/animation-500-l4ufn0up.gif')
+			= image_tag('https://i.ibb.co/K5JrgXT/90406-star-cards.gif', width: 500, height: 500)

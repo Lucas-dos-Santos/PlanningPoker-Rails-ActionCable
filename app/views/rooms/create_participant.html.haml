@@ -1,4 +1,11 @@
-.container  
-  = form_with url: room_show_path(@room_identifier), method: :get do |f|
-    = f.text_field :name, placeholder: 'Your Name', required: true, maxlength: 10
-    = f.submit "Enter Room"
+.container.mt-5
+  .row
+    .col-6
+      .card.w-50
+        .card-body
+          .form-group
+            = form_with url: room_show_path(@room_identifier), method: :get do |f|
+              .field-box
+                = f.text_field :name, required: true, maxlength: 12, class: 'text-white'
+                = f.label :name
+              = f.submit "Enter Room", class: 'btn-custom-home'

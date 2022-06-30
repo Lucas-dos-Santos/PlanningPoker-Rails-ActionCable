@@ -4,17 +4,43 @@ body {
 	font-family: Helvetica, Sans-Serif;
 }
 
+h2 {
+	margin: 0;
+}
+
+img.wrap_img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: auto;
+	opacity: 0.1;
+	z-index: -99;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #a5d3ff inset !important;
+	-webkit-text-fill-color: #fff !important;
+}
+
 .bg-custom-color {
-	background: #E9FFF9
+	background: rgba(165,211,255, 1);
+	box-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
 .text-custom-color {
-	color: #467599;
+	color: #fff;
+}
+
+.card {
+	background-color: #a5d3ff;
+	border: none;
+	box-shadow: 0 1px 15px rgba(0,0,0,0.2);
 }
 
 .estimate-card {
 	padding: 0.5rem;
-	border: solid 1px #000;
+	border: solid 1px #3A2E39;
 	width: 4rem;
 	height: 6rem;
 	border-radius: 0.5rem;
@@ -25,8 +51,8 @@ body {
 }
 
 .card-voted {
-	background-color: #0dcaf0;
-	color: white;
+	background-color: #a5d3ff;
+	color: #E9FFF9;
 	border: none;
 }
 
@@ -40,14 +66,16 @@ body {
 	width: 50px;
 	height: 50px;
 	margin: 0 10px;
-	position: relative;
+	top: 0.3rem;
+	right: 0.5rem;
+	position: absolute;
 	border-radius: 50%;
 	overflow: hidden;
 	transition: transform .3s;
 }
 
 .icons a {
-	color: #121212;
+	color: #3A2E39;
 }
 
 .icons:hover {
@@ -61,7 +89,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to left, #b52b65, #ed6663);
+	background: linear-gradient(to left, #a5d3ff, #fff);
 	z-index: -1;
 	border-radius: 50%;
 	transform: translate(100%, 100%);
@@ -95,8 +123,8 @@ body {
 	font-size: 16px;
 	margin-bottom: 30px;
 	border: none;
-	border-bottom: 1px solid #000;
-	color: #000;
+	border-bottom: 1px solid #fff;
+	color: #3A2E39;
 	outline: none;
 	background: transparent;
 }
@@ -107,7 +135,8 @@ body {
 	left: 0;
 	padding: 10px 0;
 	font-size: 16px;
-	color: #000;
+	font-weight: bold;
+	color: #fff;
 	pointer-events: none;
 	transition: .5s;
 }
@@ -116,6 +145,21 @@ body {
 .field-box input:valid ~ label {
 	top: -20px;
 	left: 0;
-	color: #ff0043;
+	color: #F03A47;
 	font-size: 14px;
+}
+
+.btn-custom-home {
+	color: #a5d3ff;
+	font-weight: bold;
+	background-color: #fff;
+	border: 1px solid #a5d3ff;
+	border-radius: 5px;
+	padding: 3px;
+}
+
+.btn-custom-home:hover {
+	color: #fff;
+	background-color: #a5d3ff;
+	border: 1px solid #fff;
 }

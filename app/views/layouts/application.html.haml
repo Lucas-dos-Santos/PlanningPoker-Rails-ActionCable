@@ -10,6 +10,7 @@
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.bg-custom-color
+  %body
+    = image_tag('https://i.ibb.co/t45f70g/366.jpg', class: 'wrap_img')
     = render 'layouts/header'
     = yield

@@ -1,4 +1,4 @@
 %div.me-5
 	= participant.name
-	%div{ id: participant.uuid, class: "estimate-card #{set_card_voted(participant.estimate)}" }
+	%div{ id: participant.uuid, class: "fs-3 estimate-card #{set_card_voted(participant.estimate)}" }
 		= "#{participant.estimate && (!@room.is_hidden || @user_session_id == participant.user_session_id) ? participant.estimate : '?'}"
