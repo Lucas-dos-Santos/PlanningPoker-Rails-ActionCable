@@ -24,9 +24,9 @@
 :javascript
   function changeValue(uuid, value) {
     $('#' + uuid).text(value)
+    $('.estimate-card').removeClass('magictime tinRightIn');
   }
 
   $(document).ready(function () {
     $('.estimate-card').addClass('magictime tinRightIn');
-    $('.estimate-card').removeClass('magictime tinRightIn');
   });

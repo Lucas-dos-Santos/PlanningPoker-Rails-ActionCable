@@ -4,10 +4,10 @@
 			.card.w-75
 				.card-body
 					.form-group
-						= form_with url: new_room_path, method: :get do |f|
+						= form_with url: rooms_enter_path do |f|
 							.field-box
-								= f.text_field :id_room, required: true, maxlength: 12
-								= f.label :id_room
+								= f.text_field :room_identifier, required: true, maxlength: 12
+								= f.label :room_identifier
 							= f.submit 'Enter Room', class: 'btn btn-sm btn-secondary'
 			.card.w-75.mt-3
 				.card-body
