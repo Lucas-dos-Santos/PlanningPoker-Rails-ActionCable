@@ -4,6 +4,14 @@ body {
 	font-family: Helvetica, Sans-Serif;
 }
 
+body::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #a5d3ff;
+}
+
 h2 {
 	margin: 0;
 }
@@ -167,3 +175,4 @@ input:-webkit-autofill {
 	background-color: #a5d3ff;
 	border: 1px solid #fff;
 }
+
