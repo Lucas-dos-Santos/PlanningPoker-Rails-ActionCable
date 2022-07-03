@@ -2,22 +2,17 @@ import consumer from "./consumer"
 
 consumer.subscriptions.create("RoomChannel", {
   connected() {
-    console.log('conectado')
   },
 
   disconnected(data) {
-    console.log('desconectado')
-    console.log(data)
   },
 
   unsubscribe(data){
-    console.log('unsubscribe')
   },
 
   received(data) {
     console.log(data)
     function updateParticipants(participants_uuids) {
-      console.log('to aKI')
       $('#cards-container .estimate-card').filter(function(i, obj) {
         return !participants_uuids.includes(obj.id)
       }).parent('div').remove()
@@ -25,7 +20,7 @@ consumer.subscriptions.create("RoomChannel", {
 
     if (data.origin == 'add_participant_card') {
       let participant = data.participant
-      $('#cards-container').append($('<div>', { class: 'me-5' }).text(participant.name).append($('<div>', { class: 'estimate-card', id: participant.uuid }).text('?') ))
+      $('#cards-container').append($('<div>', { class: 'me-5 display-center flex-column custom-color-title' }).text(participant.name).append($('<div>', { class: 'estimate-card display-center fs-4', id: participant.uuid }).text('?') ))
     } 
     if (data.origin == 'update_estimate') {
       let participant = data.participant

@@ -6,6 +6,6 @@
           .form-group
             = form_with url: room_show_path(@room_identifier), method: :get do |f|
               .field-box
-                = f.text_field :name, required: true, maxlength: 12, class: 'text-white'
+                = f.text_field :name, required: true, maxlength: 8, class: 'text-white'
                 = f.label :name
               = f.submit "Enter Room", class: 'btn-custom-home'
