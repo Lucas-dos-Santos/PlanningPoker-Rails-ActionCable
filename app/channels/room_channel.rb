@@ -1,9 +1,9 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "room_channel"
+    stream_from "room:#{current_participant.room_id}"
   end
 
   def unsubscribed
-    puts 'pasei aki no unsub'
+    stop_all_streams
   end
 end

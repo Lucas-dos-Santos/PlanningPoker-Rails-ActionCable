@@ -11,7 +11,6 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   received(data) {
-    console.log(data)
     function updateParticipants(participants_uuids) {
       $('#cards-container .estimate-card').filter(function(i, obj) {
         return !participants_uuids.includes(obj.id)

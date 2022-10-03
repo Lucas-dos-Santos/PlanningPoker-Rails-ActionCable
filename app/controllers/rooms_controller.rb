@@ -41,20 +41,20 @@ class RoomsController < ApplicationController
     participant = @room.participants.where(user_session_id: session_id).first
 		participant.update(estimate: params[:value], can_estimate: false)
 
-		ActionCable.server.broadcast('room_channel', { participant: participant, origin: 'update_estimate' })
+		RoomChannel.broadcast_to(@room.id, { participant: participant, origin: 'update_estimate' })
   end
 
 	def reset_room
 		@room.update(is_hidden: true)
 		@room.participants.update_all(estimate: nil, can_estimate: true)
 
-		ActionCable.server.broadcast('room_channel', { origin: 'reset_room', participants_uuids: @room.participants.pluck(:uuid) })
+		RoomChannel.broadcast_to(@room.id, { origin: 'reset_room', participants_uuids: @room.participants.pluck(:uuid) })
 	end
 
 	def reveal
 		@room.update(is_hidden: false)
 
-		ActionCable.server.broadcast('room_channel', { participants: @room.participants, origin: 'reveal' })
+		RoomChannel.broadcast_to(@room.id, { participants: @room.participants, origin: 'reveal' })
 	end
 
 	def enter_room
@@ -72,6 +72,6 @@ class RoomsController < ApplicationController
 	end
 
 	def add_participant_card(participant)
-		ActionCable.server.broadcast('room_channel', { participant: participant, origin: 'add_participant_card' })
+		RoomChannel.broadcast_to(@room.id, { participant: participant, origin: 'add_participant_card' })
 	end
 end

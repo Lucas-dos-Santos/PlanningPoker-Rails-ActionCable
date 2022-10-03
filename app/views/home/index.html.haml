@@ -1,24 +1,32 @@
 .container
 	.row.display-center.mt-custom
 		.col-6.display-center.flex-column
-			.card.w-75
-				.card-body
-					.form-group
-						= form_with url: rooms_enter_path do |f|
-							.field-box
-								= f.text_field :room_identifier, required: true, maxlength: 12, class: 'text-white'
-								= f.label :room_identifier
-							= f.submit 'Enter Room', class: 'btn-custom-home'
 			.card.w-75.mt-3
 				.card-body
+					%h3.mb-3 Create a new game
 					.form-group
 						= form_with url: new_room_path, method: :get do |f|
 							.field-box
-								= f.text_field :team_name, required: true, maxlength: 12, class: 'text-white'
+								= f.text_field :team_name, required: true, maxlength: 12, class: 'text-dark'
 								= f.label :team_name
 							.field-box
-								= f.text_field :name, required: true, maxlength: 8, class: 'text-white'
-								= f.label :name
-							= f.submit 'Create new Room', class: 'btn-custom-home'
+								= f.text_field :name, required: true, maxlength: 8, class: 'text-dark'
+								= f.label 'Your name'
+							.form-group.d-flex.justify-content-center
+								= f.submit 'Create game', class: 'btn btn-dark w-50 me-2'
+								= f.select :type, ['Fibonnaci'], {}, class: 'form-select w-50'
 		.col-6
-			= image_tag('https://i.ibb.co/wC9XcFB/TESTE1.gif')
+			%div{ 'data-aos': 'fade-in' }
+				%h2
+					It's 
+					%span.typed.color-theme{ 'data-typed-items': 'simple, cool, free' }
+			%h2
+				Get more 
+				%span.color-theme assertive 
+				estimates, a more 
+				%span.color-theme engaged 
+				team and 
+				%span.color-theme improve
+				the quality of projects with planning poker.
+			= javascript_pack_tag 'typed'
+			= javascript_pack_tag 'main'

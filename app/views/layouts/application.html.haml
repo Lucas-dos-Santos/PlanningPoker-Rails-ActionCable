@@ -1,17 +1,20 @@
 !!!
-%html
+%html.h-100
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title PlanningPokerNew
+    %title= set_title_page
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    = favicon_link_tag asset_path('favicon.png')
+    %link{ href: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap', rel: 'stylesheet' }
+    = favicon_link_tag 'https://i.ibb.co/hRnpbQ8/favicon-pp.png'
     = action_cable_meta_tag
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    = image_tag('https://i.ibb.co/PNvpyGR/bg-planning.jpg', class: 'wrap_img')
+  %body.d-flex.flex-column.h-100
+    = image_tag 'https://i.ibb.co/5FbgRW7/wave-2.png', class: 'wrap_img'
     = render 'layouts/header'
-    = yield
+    %main.flex-shrink-0
+      = yield
+    = render 'layouts/footer'

@@ -11,7 +11,8 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
-gem "pg", "~> 1.2"
+# gem "pg", "~> 1.2"
+gem 'sqlite3', '~> 1.4'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 

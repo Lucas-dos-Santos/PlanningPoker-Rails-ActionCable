@@ -1,7 +1,18 @@
-%nav.navbar.bg-custom-color.display-center
-	%h2.text-custom-color.font-monospace 
-		Planning Poker Free
+%header
+	%nav.navbar
+		.box-image
+			= link_to root_path do
+				= image_tag 'https://i.ibb.co/31BTDKp/logo-pp-3.png'
 
-.icons.display-center
-	%a{ href: 'https://github.com/Lucas-dos-Santos', target: '_blank'}
-		%i.fa-brands.fa-github.fa-2x.text-white
+	.display-end
+		= link_to 'About', root_path, class: 'me-2'
+		%span.me-2= '|'
+		= link_to 'Contact', root_path
+
+	.icons
+		%div.mb-2
+			= link_to set_url_language('?locale=en'), class: 'flag-language' do
+				= image_tag 'https://i.ibb.co/jGZGb3r/eua-flag.png'
+		%div
+			= link_to set_url_language('?locale=pt-BR'), class: 'flag-language' do
+				= image_tag 'https://i.ibb.co/1zpgj6Q/brasil-flag.png'
