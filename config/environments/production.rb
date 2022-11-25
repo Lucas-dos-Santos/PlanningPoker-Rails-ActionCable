@@ -42,8 +42,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://planningpokerfree.up.railway.app/cable'
-  config.action_cable.allowed_request_origins = [ 'https://planningpokerfree.up.railway.app', 'http://planningpokerfree.up.railway.app' ]
+  config.action_cable.url = 'wss://planningpokerfree.fly.dev/cable'
+  config.action_cable.allowed_request_origins = [ 'https://planningpokerfree.fly.dev', 'http://planningpokerfree.fly.dev' ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
